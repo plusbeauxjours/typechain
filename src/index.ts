@@ -1,19 +1,40 @@
-interface Human{
-    name: string;
-    age: number;
-    gender: string;
+class Human {
+    public name: string;
+    public age: number;
+    public gender: string;
+    constructor(name: string, age: number, gender: string){
+        this.name= name;
+        this.age = age;
+        this.gender = gender;
+    }
 }
 
-const person = {
-    name: 'Minjae',
-    age: 22,
-    gender: 'male'
-}
+const danny = new Human('Danny', 33, 'male');
 
-const sayHi = (person: Human): string => {
+// a method that is called everytime the class starts 
+// everytime i creat an object without class
+
+// giving a same property name to arguement name
+// property's name is equel to name of constructor's function
+
+// #5 Interfaces on Typescript
+// interface Human{
+//     name: string;
+//     age: number;
+//     gender: string;
+// }
+// if i use a react i have to use a class
+
+// const person = {
+//     name: 'Minjae',
+//     age: 22,
+//     gender: 'male'
+// }
+
+const sayHi = (person) => {
     return `Hello ${person.name}, you are ${person.age}, you are a ${person.gender}!`;
 };
 
-console.log(sayHi(person));
+console.log(sayHi(danny));
 
 export { };
