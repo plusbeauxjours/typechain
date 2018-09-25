@@ -18,7 +18,9 @@ const danny = new Human('Danny', 33, 'male');
 //     age: number;
 //     gender: string;
 // }
+
 // if i use a react i have to use a class
+
 // const person = {
 //     name: 'Minjae',
 //     age: 22,

@@ -1,40 +1,28 @@
-class Human {
-    public name: string;
-    public age: number;
-    public gender: string;
-    constructor(name: string, age: number, gender: string){
-        this.name= name;
-        this.age = age;
-        this.gender = gender;
+class Block {
+    public index: number;
+    public hash: string;
+    public previoushHash: string;
+    public data: string;
+    public timestamp: number;
+    constructor(
+        index: number,
+        hash: string,
+        previousHash: string,
+        data: string,
+        timestamp: number
+    ){
+        this.index = index;
+        this.hash = hash;
+        this.previousHash = previousHash;
+        this.data = data;
+        this.timestamp = timestamp;
     }
 }
 
-const danny = new Human('Danny', 33, 'male');
+const genesisBlock: Block  = new Block(0, "202020", "", "hello", 1234)
 
-// a method that is called everytime the class starts 
-// everytime i creat an object without class
+let blockchain: [Block] = [genesisBlock];
 
-// giving a same property name to arguement name
-// property's name is equel to name of constructor's function
+console.log(blockchain);
 
-// #5 Interfaces on Typescript
-// interface Human{
-//     name: string;
-//     age: number;
-//     gender: string;
-// }
-// if i use a react i have to use a class
-
-// const person = {
-//     name: 'Minjae',
-//     age: 22,
-//     gender: 'male'
-// }
-
-const sayHi = (person) => {
-    return `Hello ${person.name}, you are ${person.age}, you are a ${person.gender}!`;
-};
-
-console.log(sayHi(danny));
-
-export { };
+export {};
