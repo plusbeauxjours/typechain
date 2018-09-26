@@ -1,33 +1,28 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class Human {
-    constructor(name, age, gender) {
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
+const CryptoJS = require("crypto-js");
+class Block {
+    constructor(index, hash, previousHash, data, timestamp) {
+        this.index = index;
+        this.hash = hash;
+        this.previousHash = previousHash;
+        this.data = data;
+        this.timestamp = timestamp;
     }
 }
-const danny = new Human('Danny', 33, 'male');
-// a method that is called everytime the class starts 
-// everytime i creat an object without class
-// giving a same property name to arguement name
-// property's name is equel to name of constructor's function
-// #5 Interfaces on Typescript
-// interface Human{
-//     name: string;
-//     age: number;
-//     gender: string;
-// }
-
-// if i use a react i have to use a class
-
-// const person = {
-//     name: 'Minjae',
-//     age: 22,
-//     gender: 'male'
-// }
-const sayHi = (person) => {
-    return `Hello ${person.name}, you are ${person.age}, you are a ${person.gender}!`;
+Block.calculateBlockHash = (index, previousHash, timestamp, data) => CryptoJS.SHA256(index + previousHash + timestamp + data).toString();
+const genesisBlock = new Block(0, "202020", "", "hello", 1234);
+let blockchain = [genesisBlock];
+const getBlockchain = () => blockchain;
+const getLatestBlock = () => blockchain[blockchain.length - 1];
+const getNewTimeStamp = () => Math.round(new Date().getTime() / 1000);
+const createNewBlock = (data) => {
+    const previousBlock = getLatestBlock();
+    const newIndex = previousBlock.index + 1;
+    const newTimeStamp = getNewTimeStamp();
+    const newHash = Block.calculateBlockHash(newIndex, previousBlock.hash, newTimeStamp, data);
+    const newBlock = new Block(newIndex, newHash, previousBlock.hash, data, newTimeStamp);
+    return newBlock;
 };
-console.log(sayHi(danny));
+console.log(createNewBlock('hello'), createNewBlock('bye bye'));
 //# sourceMappingURL=index.js.map
